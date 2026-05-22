@@ -15,6 +15,7 @@ fn main() {
 
     match args[1].as_str() {
         "start" => start(&args),
+        "shell" => shell_start(),
         "stop" => stop(),
         "--daemon" => daemon(),
         _ => help(),
@@ -24,6 +25,17 @@ fn main() {
 fn help() {
     println!("usage: shellrec <start | stop>");
     std::process::exit(0);
+}
+
+fn shell_start() {
+    let shell = env::var("SHELL").unwrap_or_else(|_| "/bin/bash".to_string());
+
+    println!("STARTED SHELL RECORDING");
+
+    Command::new(&shell)
+        .env("PS1", "(record) $ ")
+        .status()
+        .expect("Failed to run shell");
 }
 
 fn start(args: &Vec<String>) {
