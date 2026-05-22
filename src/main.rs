@@ -15,6 +15,8 @@ fn main() {
 
     match args[1].as_str() {
         "start" => start(&args),
+        "stop" => stop(),
+        "--daemon" => daemon(),
         _ => help(),
     }
 }
