@@ -30,6 +30,8 @@ Stop recording:
 shellrec stop
 ```
 
+## In future
+
 Export commands:
 
 ```bash
